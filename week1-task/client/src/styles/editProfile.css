@@ -1,0 +1,96 @@
+.content .wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.content .wrapper h1 {
+  margin-bottom: 2rem;
+}
+
+.wrapper form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form .form-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+form .form-box:last-child {
+  justify-content: flex-end;
+}
+
+form .form-box label {
+  cursor: pointer;
+}
+
+form .form-box input,
+form .form-box textarea {
+  padding: 0.4rem 1rem;
+  width: 70%;
+  border-radius: 0.4rem;
+  border: 0.1rem solid rgba(128, 128, 128, 0.5);
+}
+
+form .form-box input:focus,
+form .form-box textarea:focus {
+  outline: 0.1rem solid rgba(128, 128, 128, 0.5);
+}
+
+form .form-box input:hover,
+form .form-box textarea:hover {
+  background: rgba(128, 128, 128, 0.15);
+}
+
+form .form-box textarea {
+  resize: none;
+}
+
+form .form-box button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background-color: #0095f6;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+form .form-box img {
+  width: 10rem; /* Set width */
+  height: 10rem; /* Set height to match width for a square */
+  object-fit: cover; /* Ensures image fills the square */
+  border: 5px solid black; /* Square border */
+  border-radius: 50%;
+}
+@media only screen and (max-width: 992px) {
+  form .form-box label {
+    font-size: 0.8rem;
+  }
+  form .form-box input,
+  form .form-box textarea {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin-bottom: 5rem;
+  }
+  .wrapper h1 {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  form .form-box {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}

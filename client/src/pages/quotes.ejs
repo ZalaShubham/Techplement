@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="src/styles/quotes.css" />
+    <link rel="stylesheet" href="src/styles/addQuoteModal.css" />
+    <link rel="stylesheet" href="src/styles/quoteOptionModal.css" />
+  </head>
+
+  <body>
+    <header class="mobile-header">
+      <div class="">
+        <a href="/">
+          <img
+            src="../../public/quotes-light.png"
+            alt="Quotes Logo"
+            width="140"
+            height="40"
+        /></a>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 2rem;
+        "
+      >
+        <form>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search"
+            style="
+              padding: 0.4rem;
+              background-color: rgba(184, 184, 184, 0.3);
+              border: none;
+              border-radius: 5px;
+            "
+          />
+        </form>
+        <img class="option-icon" src="../../public/bell.png" />
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <div class="logos">
+        <a href="/">
+          <img
+            id="icon"
+            src="../../public/icon-dark.png"
+            width="50"
+            height="50"
+            alt="Quote Icon"
+          />
+        </a>
+        <a href="/">
+          <img
+            src="../../public/quotes-light.png"
+            alt="Quotes Logo"
+            width="140"
+            height="40"
+        /></a>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li class="<%= activePage==='home' && 'active-link' %>">
+            <a href="home"
+              ><img src="../../public/home.png" />
+              <p>Home</p></a
+            >
+          </li>
+          <li>
+            <a id="search" href="/search"
+              ><img src="../../public/search .png" />
+              <p>Search</p></a
+            >
+          </li>
+          <li>
+            <a href="exprore"
+              ><img src="../../public/navigation.png" />
+              <p>Explore</p></a
+            >
+          </li>
+          <li>
+            <a href="message">
+              <img src="../../public/message.png" />
+              <p>Message</p></a
+            >
+          </li>
+          <li>
+            <a href="notification">
+              <img src="../../public/bell.png" />
+              <p>Notification</p></a
+            >
+          </li>
+          <li>
+            <a id="create">
+              <img src="../../public/adding.png" />
+              <p>Create</p></a
+            >
+          </li>
+          <li class="<%= activePage==='profile' && 'active-link' %>">
+            <a href="<%= user.userName %>">
+              <img src="../../public/profile.png" />
+              <p>Profile</p></a
+            >
+          </li>
+          <li>
+            <a href="more">
+              <img src="../../public/menu.png" />
+              <p>More</p></a
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <article class="content">
+      <% if(quotes && quotes.length>0){ %> <% quotes.forEach(quote=>{ %>
+      <div class="quote-cart">
+        <div class="cart-header">
+          <div class="user-info">
+            <% users.forEach(user=>{ %> <% if(quote.userId===user.id){ %>
+            <a href="/<%= user.userName %>">
+              <% if(user.imageUrl===""){ %>
+              <img class="profile-image" src="../../public/profile.png" />
+              <% }else{ %>
+              <img class="profile-image" src="<%= user.imageUrl %>" />
+              <% } %>
+              <p class="user-name"><%= user.userName %><span>*</span></p>
+            </a>
+            <% } %> <% }) %>
+            <p id="quote-createdAt" createdAt="<%= quote.createdAt %>"></p>
+          </div>
+          <div
+            class="option"
+            id="option-btn"
+            onclick="handleOptionModal('<%= quote.id %>')"
+          >
+            <img
+              class="option-icon"
+              src="../../public/option.png"
+              alt="Option"
+            />
+          </div>
+        </div>
+        <div class="quote-main">
+          <% if(quote.quote){ %>
+          <p><%= quote.quote %></p>
+          <% }else{ %>
+          <img
+            style="width: 100%"
+            src="<%= quote.imageUrl %>"
+            alt="Quote Image"
+          />
+          <% } %>
+          <h5><span>- </span> <%=quote.author %></h5>
+        </div>
+        <div class="quote-footer">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              flex-direction: row;
+              gap: 0.5rem;
+            "
+          >
+            <img
+              class="option-icon"
+              src="../../public/unlike.png"
+              alt="Unlike"
+            />
+            <img
+              class="option-icon"
+              src="../../public/comment.png"
+              alt="Commment"
+            />
+            <img class="option-icon" src="../../public/share.png" alt="Share" />
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              flex-direction: row;
+              gap: 0.5rem;
+            "
+          >
+            <img class="option-icon" src="../../public/save.png" alt="Unlike" />
+          </div>
+        </div>
+        <div class="likes">
+          <p><span>1212</span> likes</p>
+        </div>
+      </div>
+      <% }) %> <% }else{ %>
+      <div class="no-quote-yet">
+        <h3>📑 No Quote Yet</h3>
+      </div>
+      <% } %>
+    </article>
+
+    <aside class="suggested">
+      <div class="my-profile">
+        <a href="/<%= user.userName %>">
+          <% if(user.imageUrl===""){ %>
+          <img class="profile-image" src="../../public/profile.png" />
+          <% }else{ %>
+          <img class="profile-image" src="<%= user.imageUrl %>" />
+          <% } %>
+          <div>
+            <p class="user-name"><%= user.userName %></p>
+            <p><%= user.fullName %></p>
+          </div>
+        </a>
+        <a class="log-out" href="/logout">Log out</a>
+      </div>
+      <div class="suggested-users">
+        <% if( suggestedUsers.length>0){ %>
+        <ul>
+          <% suggestedUsers.forEach(suggestedUser=>{ %>
+          <li>
+            <a href="/<%= suggestedUser.userName %>">
+              <% if(suggestedUser.imageUrl===""){ %>
+              <img class="profile-image" src="../../public/profile.png" />
+              <% }else{ %>
+              <img class="profile-image" src="<%= suggestedUser.imageUrl %>" />
+              <% } %>
+              <div>
+                <p class="user-name"><%= suggestedUser.userName %></p>
+                <p><%= suggestedUser.fullName %></p>
+              </div>
+              <% let isFollowing =
+              followings.some((followingUser)=>followingUser.followingId===suggestedUser.id);
+              %>
+            </a>
+            <p
+              type="button"
+              onclick="follow('<%= suggestedUser.id %>')"
+              class="log-out"
+            >
+              <%= isFollowing ? "Following" : "Follow" %>
+            </p>
+          </li>
+          <% }) %>
+        </ul>
+        <% } %>
+      </div>
+    </aside>
+
+    <nav class="mobile-nav">
+      <a href="home"><img class="icon" src="../../public/home.png" /> </a>
+      <a href="message">
+        <img class="icon" src="../../public/message.png" />
+      </a>
+      <a id="create">
+        <img class="icon" src="../../public/adding.png" />
+      </a>
+      <a href="/<%= user.userName %>">
+        <img class="icon" src="../../public/profile.png" />
+      </a>
+      <a href="more">
+        <img class="icon" src="../../public/menu.png" />
+      </a>
+    </nav>
+
+    <%- include('./addQuoteModal.ejs') %> <%- include('./quoteOptionModal.ejs')
+    %>
+
+    <script src="src/index.js"></script>
+    <script src="src/services/servicesApi.js"></script>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+
+body {
+  background-color: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../public//bg-dark.png");
+  background-position: 100% 0;
+  background-repeat: repeat;
+  background-size: cover;
+  padding-top: 4rem;
+  padding-bottom: 20vh;
+  z-index: -1;
+}
+
+.center-text {
+  max-width: 600px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.download-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.qr-code {
+  width: 80px;
+  height: 80px;
+}
+
+.store-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.store-button {
+  height: 40px;
+}
+
+.floating-quotes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.quote-card {
+  position: absolute;
+  width: 220px;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.purple {
+  background: #7b5dfa;
+  top: 10%;
+  left: 10%;
+}
+.blue {
+  background: #4c9eff;
+  bottom: 20%;
+  right: 10%;
+}
+.gray {
+  background: #444;
+  top: 40%;
+  right: 32%;
+}
+.pink {
+  background: #ff79b0;
+  bottom: 10%;
+  left: 20%;
+}
+
+.rotate-left {
+  transform: rotate(-10deg);
+}
+.rotate-right {
+  transform: rotate(15deg);
+}
+.rotate-slight {
+  transform: rotate(-5deg);
+}
+.rotate-up {
+  transform: rotate(10deg);
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motivation UI</title>
+    <link rel="stylesheet" href="src/styles/index.css" />
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <!-- Center Text -->
+    <div class="center-text">
+      <h1>
+        Transform Your Day, One Quote at a Time. Encourage positive thoughts and
+        embrace a goal-getter mindset with Motivation.
+      </h1>
+      <p>
+        Get inspired daily with a fresh dose of motivation, wisdom, and
+        positivity. Our app delivers carefully curated quotes to fuel your
+        thoughts and kickstart your day with purpose. Whether you need a spark
+        of creativity or a moment of reflection, let each quote guide you toward
+        a brighter mindset.
+      </p>
+      </div>
+    </div>
+
+    <!-- Floating Quote Cards -->
+    <div class="floating-quotes">
+      <div class="quote-card purple rotate-left">
+        Don’t let anything hold you back, especially your mind
+      </div>
+      <div class="quote-card blue rotate-right">
+        A cloudy day will never bother you if you bring your own sunshine
+      </div>
+      <div class="quote-card gray rotate-slight">
+        The mind once enlightened cannot become dark. - Thomas Paine
+      </div>
+      <div class="quote-card pink rotate-up">
+        Keep the promises you make to yourself.
+      </div>
+    </div>
+  </body>
+</html>
